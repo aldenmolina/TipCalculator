@@ -14,7 +14,21 @@ class MainActivity : AppCompatActivity() {
         infoTextView.visibility = View.INVISIBLE
 
         calculateButton.setOnClickListener {
-            
+
+            val bill = billEditText.text.toString().toDouble()
+            val tipPercentage = tipPercentageEditText.text.toString().toDouble()
+            val tip = bill * (tipPercentage / 100)
+            val total = tip + bill
+
+            infoTextView.visibility = View.VISIBLE
+
+            infoTextView.text = "Tip: ${doubleToDollar(tip)} Total: ${doubleToDollar(total)}"
+
+
         }
+    }
+
+    fun doubleToDollar(number:Double): String {
+        return "$" + String.format("%2f", number)
     }
 }
